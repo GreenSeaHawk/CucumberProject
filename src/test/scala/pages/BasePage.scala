@@ -1,5 +1,6 @@
 package pages
 
+import org.openqa.selenium.support.ui.Select
 import org.openqa.selenium.{By, JavascriptExecutor, WebDriver}
 import support.DriverManager
 import utils.ConfigReader
@@ -40,7 +41,17 @@ trait BasePage {
     element.click()
   }
 
-  //  def getText(selector: By): String =
-  //    driver.findElement(selector).getText
-  //
+  def getText(selector: By): String = {
+    val element = driver.findElement(selector)
+    js.executeScript("arguments[0].scrollIntoView();", element)
+    element.getText
+    }
+
+  def selectFromDropdown(dropdown: By, option: String): Unit = {
+    val element = driver.findElement(dropdown)
+    js.executeScript("arguments[0].scrollIntoView();", element)
+    val select: Select = new Select(element)
+    select.selectByVisibleText(option)
+  }
+
 }
