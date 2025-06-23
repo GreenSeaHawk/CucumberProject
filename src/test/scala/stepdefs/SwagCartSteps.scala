@@ -32,7 +32,6 @@ class SwagCartSteps extends ScalaDsl with EN {
     println(countCartItems(cartItemsLocator) + " item(s) in the cart")
     assert(elementIsDisplayed(backpackInCartLocator))
     takeScreenshot(DriverManager.driver, prefix = s"${scenario}_NavToCart")
-
   }
 
 
