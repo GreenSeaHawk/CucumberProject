@@ -27,8 +27,7 @@ class SwagLoginSteps extends ScalaDsl with EN {
     takeScreenshot(DriverManager.driver, prefix = s"${scenario}_PasswordInputted")
   }
 
-  And("""I click Login button""") {
-    ()
+  And("""I click Login button""") { () =>
     clickOn(loginButtonLocator)
     takeScreenshot(DriverManager.driver, prefix = s"${scenario}_LoginButtonClicked")
   }
@@ -39,17 +38,17 @@ class SwagLoginSteps extends ScalaDsl with EN {
     takeScreenshot(DriverManager.driver, prefix = s"${scenario}_NavProductPage")
   }
 
-  When("""I enter a locked out username""") { ()
+  When("""I enter a locked out username""") { () =>
     inputText(usernameLocator, "locked_out_user")
     takeScreenshot(DriverManager.driver, prefix = s"${scenario}_UsernameInputted")
   }
 
-  And("""I enter a locked out password""") { ()
+  And("""I enter a locked out password""") { () =>
     inputText(passwordLocator, "secret_sauce")
     takeScreenshot(DriverManager.driver, prefix = s"${scenario}_PasswordInputted")
   }
 
-  Then("""I should have a locked out error message""") { ()
+  Then("""I should have a locked out error message""") { () =>
     assert(getText(lockedOutErrorMessage) == "Epic sadface: Sorry, this user has been locked out.")
     println("Unsuccessful login!")
     takeScreenshot(DriverManager.driver, prefix = s"${scenario}_ErrorMessage")

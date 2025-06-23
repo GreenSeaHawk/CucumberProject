@@ -17,14 +17,6 @@ trait BasePage {
     driver.get(testUrl)
   }
 
-  //  // Locator Identification
-  //  def findById(id: String): WebElement = driver.findElement(By.id(id))
-  //  def findByName(name: String): WebElement = driver.findElement(By.name(name))
-  //  def findByLinkText(link: String): WebElement = driver.findElement(By.linkText(link))
-  //  def findByPartialLinkText(partialLink: String): WebElement = driver.findElement(By.partialLinkText(partialLink))
-  //  def findByTagName(tag: String): WebElement = driver.findElement(By.tagName(tag))
-  //  def findByCssSelector(css: String): WebElement = driver.findElement(By.cssSelector(css))
-  //  def findByXpath(xpath: String): WebElement = driver.findElement(By.xpath(xpath))
 
   // Common Actions
 
@@ -52,6 +44,12 @@ trait BasePage {
     js.executeScript("arguments[0].scrollIntoView();", element)
     val select: Select = new Select(element)
     select.selectByVisibleText(option)
+  }
+
+  def elementIsDisplayed(selector: By): Boolean = {
+    val element = driver.findElement(selector)
+    js.executeScript("arguments[0].scrollIntoView();", element)
+    element.isDisplayed
   }
 
 }

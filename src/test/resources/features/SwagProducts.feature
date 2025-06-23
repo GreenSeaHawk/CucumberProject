@@ -1,4 +1,4 @@
-@smoke
+@regression
 Feature: Swag Products
 
   Background: Logged in with standard_user

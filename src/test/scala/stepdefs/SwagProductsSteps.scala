@@ -23,12 +23,12 @@ class SwagProductsSteps extends ScalaDsl with EN {
     takeScreenshot(DriverManager.driver, prefix = s"${scenario}_PasswordInputted")
   }
 
-  When("""I select Price low to high""") { ()
+  When("""I select Price low to high""") { () =>
     selectFromDropdown(sortDropdownLocator, "Price (low to high)")
     takeScreenshot(DriverManager.driver, prefix = s"${scenario}_SortedProducts")
   }
 
-  Then("""the products should be sorted from lowest to highest""") { ()
+  Then("""the products should be sorted from lowest to highest""") { () =>
     assert(getListOfPrices(priceLocators).sorted == getListOfPrices(priceLocators))
     println("Yay! They are sorted correctly!")
   }
