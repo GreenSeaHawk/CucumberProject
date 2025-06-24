@@ -8,17 +8,25 @@ import java.io.{ByteArrayInputStream, File}
 import java.text.SimpleDateFormat
 import java.util.Date
 
+
 object ScreenCapture {
 
   def takeScreenshot(
                       driver: WebDriver,
                       basePath: String = "/Users/andrew.boyce/Documents/Screenshots/Cucumber",
-                      prefix: String = ""
+                      prefix: String = "",
+                      folder_num: String = "1"
                     ): Unit = {
     val timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date())
     val screenshotFile = driver.asInstanceOf[TakesScreenshot].getScreenshotAs(OutputType.FILE)
-
-    val fullPath = s"$basePath/${prefix}_$timeStamp.png"
+    val folderPath = s"$basePath/test_run_${folder_num}"
+    println("I made it to line 23")
+    val folder = new File(folderPath)
+    if (!folder.exists()){
+      folder.mkdirs()
+    }
+    println("I made it to line 28")
+    val fullPath = s"$basePath/test_run_${folder_num}/${prefix}_$timeStamp.png"
     FileHandler.copy(screenshotFile, new File(fullPath))
 
     // Print to console
