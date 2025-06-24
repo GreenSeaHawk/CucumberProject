@@ -1,9 +1,8 @@
-# CucumberCurriculum
+# Cucumber with Scala
 
-# Scala Selenium Cucumber BDD Framework
+# Testing Swag Labs found at:
 
-This is a test automation framework built with **Scala**, **Selenium WebDriver**, **Cucumber (Gherkin)**, and **sbt**. 
-It supports BDD-style testing for web applications.
+# https://www.saucedemo.com/
 
 # Prerequisites
 
@@ -13,18 +12,13 @@ It supports BDD-style testing for web applications.
 - Cucumber for Scala
 - JUnit
 - Selenium
+- Allure
 
-# Clone the repository:
-# ```bash
-git clone git@github.com:MercatorDigitalAcademy/CucumberCurriculum.git
-cd CucumberCurriculum.
+### How to run:
+1. You'll need to change base.path in src/test/resources/config.properties to a file path
+on your local machine to save the screenshots too.
+2. Run the following command in the terminal: ./run_tests.sh
 
-### How to run the test
-
-# 1. Run just the runner class
-sbt "testOnly *TestRunner"
-
-OR
-# 2. Run the runner class using the tags
-sbt "testOnly *TestRunner -- -Dcucumber.filter.tags=@smoke"
+### Notes:
+There is an occasional error with SwagCartSteps.When("""I click Add to cart""") unsure why this is.
 
