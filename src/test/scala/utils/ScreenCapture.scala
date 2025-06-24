@@ -7,18 +7,26 @@ import org.openqa.selenium.io.FileHandler
 import java.io.{ByteArrayInputStream, File}
 import java.text.SimpleDateFormat
 import java.util.Date
+import utils.ConfigReader
+
 
 object ScreenCapture {
 
+  val basePathConfig: String = ConfigReader.get("base.path")
   def takeScreenshot(
                       driver: WebDriver,
-                      basePath: String = "/Users/andrew.boyce/Documents/Screenshots/Cucumber",
-                      prefix: String = ""
+                      basePath: String = basePathConfig,
+                      prefix: String = "",
+                      folder_num: String = "1"
                     ): Unit = {
     val timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date())
     val screenshotFile = driver.asInstanceOf[TakesScreenshot].getScreenshotAs(OutputType.FILE)
-
-    val fullPath = s"$basePath/${prefix}_$timeStamp.png"
+    val folderPath = s"$basePath/test_run_${folder_num}"
+    val folder = new File(folderPath)
+    if (!folder.exists()){
+      folder.mkdirs()
+    }
+    val fullPath = s"$basePath/test_run_${folder_num}/${prefix}_$timeStamp.png"
     FileHandler.copy(screenshotFile, new File(fullPath))
 
     // Print to console
@@ -26,7 +34,7 @@ object ScreenCapture {
 
     // Attach screenshot to Allure report
     val screenshotBytes = driver.asInstanceOf[TakesScreenshot].getScreenshotAs(OutputType.BYTES)
-    Allure.addAttachment(s"$prefix Screenshot", "image/png", new ByteArrayInputStream(screenshotBytes), ".png")
+    Allure.addAttachment(s"$prefix, Test Run $folder_num, Screenshot", "image/png", new ByteArrayInputStream(screenshotBytes), ".png")
   }
 
 }
