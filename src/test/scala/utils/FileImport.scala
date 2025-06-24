@@ -3,11 +3,13 @@ package utils
 
 import java.io.{File, PrintWriter}
 import scala.io.Source
+import utils.ConfigReader
 
 object FileImport {
 
+  val basePathConfig: String = ConfigReader.get("base.path")
   def extractNumberFromFile(
-             pathToFile: String = "/Users/andrew.boyce/Documents/Screenshots/Cucumber/counter.txt"
+             pathToFile: String = s"$basePathConfig/counter.txt"
                            ): Int = {
     val file = new File(pathToFile)
 

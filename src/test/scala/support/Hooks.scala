@@ -8,6 +8,8 @@ import utils.ConfigReader
 import utils.FileImport.extractNumberFromFile
 import utils.ScreenCapture.takeScreenshot
 
+import java.time.Duration
+
 
 object Hooks extends ScalaDsl with EN {
 
@@ -24,6 +26,7 @@ object Hooks extends ScalaDsl with EN {
     println("Launching browser before scenario...")
     DriverManager.driver = new ChromeDriver(options)
     DriverManager.driver.manage().window().maximize()
+    DriverManager.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1))
     val testUrl = ConfigReader.get("base.url")
     driver.get(testUrl)
   }

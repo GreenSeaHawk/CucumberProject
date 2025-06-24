@@ -10,8 +10,6 @@ trait BasePage {
 
   def js: JavascriptExecutor = driver.asInstanceOf[JavascriptExecutor]
 
-  var counter: Int = 0
-
   def browserLaunch(): Unit = {
     val testUrl = ConfigReader.get("base.url")
     driver.get(testUrl)
