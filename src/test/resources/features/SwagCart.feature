@@ -1,4 +1,4 @@
-@smoke
+@regression
 Feature: Swag cart
 
   Background: Logged in with standard_user

@@ -14,6 +14,8 @@ libraryDependencies ++= Seq(
   "commons-io" % "commons-io" % "2.19.0", // Latest stable
   "com.novocode" % "junit-interface" % "0.11" % Test, // ← required for sbt
   "io.qameta.allure" % "allure-cucumber7-jvm" % "2.24.0",
-  "io.qameta.allure" % "allure-scalatest" % "2.17.3" // Optional if you use Scalatest
+  "io.qameta.allure" % "allure-scalatest" % "2.17.3", // Optional if you use Scalatest
+  "net.bytebuddy" % "byte-buddy" % "1.14.11",
+  "net.java.dev.jna" % "jna" % "5.13.0"
 )
 

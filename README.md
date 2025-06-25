@@ -19,6 +19,5 @@
 on your local machine to save the screenshots too.
 2. Run the following command in the terminal: ./run_tests.sh
 
-### Notes:
-There is an occasional error with SwagCartSteps.When("""I click Add to cart""") unsure why this is.
+
 
