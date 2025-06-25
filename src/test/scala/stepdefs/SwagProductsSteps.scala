@@ -3,7 +3,7 @@ package stepdefs
 import io.cucumber.scala.{EN, ScalaDsl}
 import locators.SwagLoginLocators._
 import pages.ProductPage._
-import support.DriverManager
+import support.DriverManager.driver
 import utils.ScreenCapture.takeScreenshot
 import locators.SwagProductsLocators._
 import support.GlobalVal.testRunCounter
@@ -16,17 +16,17 @@ class SwagProductsSteps extends ScalaDsl with EN {
 
   When("""I enter a valid username""") { () =>
     inputText(usernameLocator, "standard_user")
-    takeScreenshot(DriverManager.driver, prefix = s"${scenario}_UsernameInputted", folder_num = testRunCounter)
+    takeScreenshot(driver, prefix = s"${scenario}_UsernameInputted", folder_num = testRunCounter)
   }
 
   And("""I enter a valid password""") { () =>
     inputText(passwordLocator, "secret_sauce")
-    takeScreenshot(DriverManager.driver, prefix = s"${scenario}_PasswordInputted", folder_num = testRunCounter)
+    takeScreenshot(driver, prefix = s"${scenario}_PasswordInputted", folder_num = testRunCounter)
   }
 
   When("""I select Price low to high""") { () =>
     selectFromDropdown(sortDropdownLocator, "Price (low to high)")
-    takeScreenshot(DriverManager.driver, prefix = s"${scenario}_SortedProducts", folder_num = testRunCounter)
+    takeScreenshot(driver, prefix = s"${scenario}_SortedProducts", folder_num = testRunCounter)
   }
 
   Then("""the products should be sorted from lowest to highest""") { () =>
@@ -36,7 +36,7 @@ class SwagProductsSteps extends ScalaDsl with EN {
 
   When("""I select Price high to low""") { ()
     selectFromDropdown(sortDropdownLocator, "Price (high to low)")
-    takeScreenshot(DriverManager.driver, prefix = s"${scenario}_SortedProducts", folder_num = testRunCounter)
+    takeScreenshot(driver, prefix = s"${scenario}_SortedProducts", folder_num = testRunCounter)
   }
 
   Then("""the products should be sorted from highest to lowest""") { ()

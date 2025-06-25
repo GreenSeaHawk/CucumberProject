@@ -7,7 +7,6 @@ import support.DriverManager.driver
 import utils.ConfigReader
 import utils.FileImport.extractNumberFromFile
 import utils.ScreenCapture.takeScreenshot
-
 import java.time.Duration
 
 
@@ -15,6 +14,9 @@ object Hooks extends ScalaDsl with EN {
 
   val options = new ChromeOptions()
   options.addArguments("--headless=new")
+  options.addArguments("--guest")
+//  options.addArguments("--disable-save-password-bubble")
+//  options.addArguments("--disable-popup-blocking")
 
   BeforeAll {
     GlobalVal.testRunCounter = extractNumberFromFile().toString
@@ -25,6 +27,7 @@ object Hooks extends ScalaDsl with EN {
     counter +=1
     println("Launching browser before scenario...")
     DriverManager.driver = new ChromeDriver(options)
+//    DriverManager.driver = new ChromeDriver()
     DriverManager.driver.manage().window().maximize()
     DriverManager.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1))
     val testUrl = ConfigReader.get("base.url")
