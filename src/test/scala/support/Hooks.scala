@@ -4,9 +4,11 @@ import io.cucumber.scala.{EN, ScalaDsl, Scenario}
 import org.openqa.selenium.chrome.{ChromeDriver, ChromeOptions}
 import support.CounterGlobal.counter
 import support.DriverManager.driver
+import support.GlobalVal.testRunCounter
 import utils.ConfigReader
 import utils.FileImport.extractNumberFromFile
 import utils.ScreenCapture.takeScreenshot
+
 import java.time.Duration
 
 
@@ -36,7 +38,7 @@ object Hooks extends ScalaDsl with EN {
 
   After { scenario: Scenario =>
     if (scenario.isFailed) {
-      takeScreenshot(DriverManager.driver, prefix = "FailedScenario")
+      takeScreenshot(DriverManager.driver, prefix = "FailedScenario", folder_num = testRunCounter)
     }
     println("Closing browser after scenario...")
     DriverManager.driver.quit()
